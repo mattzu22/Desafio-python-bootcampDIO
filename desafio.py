@@ -16,17 +16,8 @@ lista_usuarios = {
     '12377663662': {'nome': 'roberto', 'data_nascimento': '16/12/1993', 'endereco': 'parnamirin,687 - ribeira - natal/rn'},
     '12377663663': {'nome': 'elton', 'data_nascimento': '16/12/1999', 'endereco': 'parnamirin,687 - ribeira - natal/rn'}
     }
-# lista_contas = [
-#     {"conta": 1, "agencia": "0001", "usuario": "12377663660"},
-#     {"conta": 2, "agencia": "0001", "usuario": "12377663660"},
-#     {"conta": 3, "agencia": "0001", "usuario": "12377663660"}
-# ]
 lista_contas = {
-    "12377663660": [
-        {"conta": 1, "agencia": "0001"},
-        {"conta": 2, "agencia": "0001"},
-        {"conta": 3, "agencia": "0001"}
-    ],
+    
 }
 
 
@@ -109,12 +100,14 @@ def criar_conta(usuario):
     usuario_filtrado = lista_usuarios.get(usuario)
     
     if not usuario_filtrado:
-        return print("usuário não existe.") 
+        print("usuário não existe.")
+        return
     
     if not lista_contas.get(usuario):
-        lista_contas[usuario] = {"conta": 1, "agencia": AGENCIA}
-    else:
-        lista_contas[usuario]["conta"] += 1
+        lista_contas[usuario] = []
+
+    numero_conta = len(lista_contas[usuario]) + 1
+    lista_contas[usuario].append({"conta": numero_conta, "agencia": AGENCIA})
     
     print("Conta criada!")
          
@@ -123,9 +116,9 @@ def criar_conta(usuario):
 criar_conta(usuario='12377663661') 
 criar_conta(usuario='12377663662')
 criar_conta(usuario='12377663662')
+criar_conta(usuario='12377663662')
 criar_conta(usuario='12377663663')
-# criar_conta(usuario='12377663660')
-# criar_conta(usuario='12377663663')
+criar_conta(usuario='12377663660')
 
 print(f"lista de contas: {lista_contas}\n")
 
